@@ -130,8 +130,11 @@ public class Draft_76 extends Draft_75 {
 
 	@Override
 	public HandshakeState acceptHandshakeAsServer( ClientHandshake handshakedata ) {
-		if( handshakedata.getFieldValue( "Upgrade" ).equals( "WebSocket" ) && handshakedata.getFieldValue( "Connection" ).contains( "Upgrade" ) && handshakedata.getFieldValue( "Sec-WebSocket-Key1" ).length() > 0 && !handshakedata.getFieldValue( "Sec-WebSocket-Key2" ).isEmpty() && handshakedata.hasFieldValue( "Origin" ) )
-			return HandshakeState.MATCHED;
+		if( handshakedata.getFieldValue( "Upgrade" ).toLowerCase( Locale.ENGLISH ).equals( "websocket" ) && 
+		    handshakedata.getFieldValue( "Connection" ).toLowerCase( Locale.ENGLISH ).contains( "upgrade" ) && 
+		    handshakedata.getFieldValue( "Sec-WebSocket-Key1" ).length() > 0 && 
+		    !handshakedata.getFieldValue( "Sec-WebSocket-Key2" ).isEmpty() && handshakedata.hasFieldValue( "Origin" ) )
+		  return HandshakeState.MATCHED;
 		return HandshakeState.NOT_MATCHED;
 	}
 
