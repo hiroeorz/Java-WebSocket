@@ -5,6 +5,7 @@ import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Random;
+import java.util.Locale;
 
 import org.java_websocket.exceptions.InvalidDataException;
 import org.java_websocket.exceptions.InvalidHandshakeException;
@@ -51,7 +52,8 @@ public class Draft_75 extends Draft {
 
 	@Override
 	public HandshakeState acceptHandshakeAsClient( ClientHandshake request, ServerHandshake response ) {
-		return request.getFieldValue( "WebSocket-Origin" ).equals( response.getFieldValue( "Origin" ) ) && basicAccept( response ) ? HandshakeState.MATCHED : HandshakeState.NOT_MATCHED;
+		return request.getFieldValue( "WebSocket-Origin" ).toLowerCase( Locale.ENGLISH ).equals( response.getFieldValue( "Origin" ).toLowerCase( Locale.ENGLISH ) ) && 
+		  basicAccept( response ) ? HandshakeState.MATCHED : HandshakeState.NOT_MATCHED;
 	}
 
 	@Override

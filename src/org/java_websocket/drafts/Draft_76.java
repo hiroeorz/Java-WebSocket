@@ -8,6 +8,7 @@ import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Random;
+import java.util.Locale;
 
 import org.java_websocket.WebSocket.Role;
 import org.java_websocket.exceptions.IncompleteHandshakeException;
@@ -133,7 +134,8 @@ public class Draft_76 extends Draft_75 {
 		if( handshakedata.getFieldValue( "Upgrade" ).toLowerCase( Locale.ENGLISH ).equals( "websocket" ) && 
 		    handshakedata.getFieldValue( "Connection" ).toLowerCase( Locale.ENGLISH ).contains( "upgrade" ) && 
 		    handshakedata.getFieldValue( "Sec-WebSocket-Key1" ).length() > 0 && 
-		    !handshakedata.getFieldValue( "Sec-WebSocket-Key2" ).isEmpty() && handshakedata.hasFieldValue( "Origin" ) )
+		    !handshakedata.getFieldValue( "Sec-WebSocket-Key2" ).isEmpty() && 
+		    handshakedata.hasFieldValue( "Origin" ) )
 		  return HandshakeState.MATCHED;
 		return HandshakeState.NOT_MATCHED;
 	}
